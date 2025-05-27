@@ -5,43 +5,43 @@
 #include <AUI/Platform/APlatform.h>
 #include <AUI/View/ADrawableView.h>
 #include <AUI/View/AProgressBar.h>
+#include <AUI/ASS/Property/FixedSize.h>
 
 using namespace declarative;
 
-MainWindow::MainWindow(_<MyUpdater> updater)
-  : AWindow("Project template app", 300_dp, 200_dp), mUpdater(std::move(updater)) {
-    setContents(Centered { Vertical {
-      Centered { Icon { ":img/icon.svg" } with_style { FixedSize(64_dp) } },
-      Centered { Label { "Hello world from AUI!" } },
-      _new<AButton>("Visit GitHub repo")
-          .connect(&AView::clicked, this, [] { APlatform::openUrl("https://github.com/aui-framework/aui"); }),
-      _new<AButton>("Visit docs")
-          .connect(&AView::clicked, this, [] { APlatform::openUrl("https://aui-framework.github.io/"); }),
-      _new<AButton>("Submit an issue")
-          .connect(
-              &AView::clicked, this, [] { APlatform::openUrl("https://github.com/aui-framework/aui/issues/new"); }),
-      CustomLayout {} & mUpdater->status.readProjected([&updater = mUpdater](const std::any& status) -> _<AView> {
-          if (std::any_cast<AUpdater::StatusIdle>(&status)) {
-              return _new<AButton>("Check for updates").connect(&AView::clicked, slot(updater)::checkForUpdates);
-          }
-          if (std::any_cast<AUpdater::StatusCheckingForUpdates>(&status)) {
-              return Label { "Checking for updates..." };
-          }
-          if (auto downloading = std::any_cast<AUpdater::StatusDownloading>(&status)) {
-              return Vertical {
-                  Label { "Downloading..." },
-                  _new<AProgressBar>() & downloading->progress,
-              };
-          }
-          if (std::any_cast<AUpdater::StatusWaitingForApplyAndRestart>(&status)) {
-              return _new<AButton>("Apply update and restart")
-                  .connect(&AView::clicked, slot(updater)::applyUpdateAndRestart);
-          }
-          return nullptr;
-      }),
-      Label { "Btw, 2 + 2 = {}"_format(sum(2, 2)) },
-      Label { "Version: " AUI_PP_STRINGIZE(AUI_CMAKE_PROJECT_VERSION) },
-    } });
+static _<AView> NIZHNYA_HUETA() {
+    return Centered::Expanding {
+        Vertical::Expanding {
+          SpacerExpanding {},
+          Horizontal {
+            Horizontal {
+              SpacerExpanding(),
+              Vertical {
+                SpacerExpanding(),
+                _new<AButton>("Play") with_style {
+                  MinSize { 128_dp, { 50_dp } },
+                  BackgroundSolid { AColor::BLACK },
+                  BorderRadius { 12_dp },
+                  BoxShadow { 0, 2_dp, 16_dp, AColor::BLUE.transparentize(0.7f) },
+                  TextColor { AColor::WHITE },
+                },
+                SpacerExpanding(),
+              },
+              SpacerExpanding(),
+            } with_style {
+              MinSize { 86_dp },
+              Expanding {},
+              BackgroundSolid { AColor::GRAY },
+            },
+          },
+        },
+    };
 }
 
-int MainWindow::sum(int a, int b) { return a + b; }
+MainWindow::MainWindow() : AWindow("LauncherMineT", 800_dp, 600_dp) {
+    setContents(Horizontal::Expanding {
+      NIZHNYA_HUETA(),
+    } with_style {
+      BackgroundSolid { 0x232323_rgb },
+    });
+}

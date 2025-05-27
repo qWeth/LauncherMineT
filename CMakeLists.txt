@@ -1,6 +1,6 @@
 # Standard routine
 cmake_minimum_required(VERSION 3.16)
-project(example_app
+project(LauncherMineT
         VERSION 0.0.10 # CI_PROJECT_VERSION
     )
 
