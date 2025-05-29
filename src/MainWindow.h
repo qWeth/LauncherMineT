@@ -6,7 +6,8 @@ class MainWindow: public AWindow {
 public:
 
     MainWindow();
-    static int sum(int a, int b);
-
+    void showLauncherSettings();
+    _<AView> NIZHNYA_HUETA();
+    _<AView> CENTRALNYA_HUETA();
 private:
 };

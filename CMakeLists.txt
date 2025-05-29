@@ -7,7 +7,9 @@ project(LauncherMineT
 option(BUILD_SHARED_LIBS "Build shared libs" OFF)
 option(AUIB_FORCE_PRECOMPILED "AUI.Boot: force precompiled dependencies" OFF)
 
-set(AUI_VERSION v7.0.1)
+set(AUI_VERSION 96fea69)
+
+set(CMAKE_BUILD_WITH_INSTALL_RPATH ON)
 
 # Use AUI.Boot
 file(
