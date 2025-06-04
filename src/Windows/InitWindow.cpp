@@ -8,6 +8,7 @@
 #include <AUI/View/ACheckBox.h>
 #include "InitWindow.h"
 #include "MainWindow.h"
+#include "Models/State.h"
 
 #include <AUI/Util/UIBuildingHelpers.h>
 #include <AUI/Util/ARandom.h>
@@ -22,10 +23,10 @@
 #include <AUI/View/ASpinnerV2.h>
 #include <AUI/View/AProgressBar.h>
 
-// using namespace declarative;
-//
-// InitWindow::InitWindow(state)
-//     : AWindow("Import version", 500_dp, 400_dp, &MainWindow::inst(), WindowStyle::MODAL  ),mState(state) {
-//
-//
-// }
+using namespace declarative;
+
+InitWindow::InitWindow(State& state) : AWindow("Import version", 500_dp, 400_dp), mState(state) {
+    setContents(Stacked {
+      Label { "test" },
+    });
+}

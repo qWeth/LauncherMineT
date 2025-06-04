@@ -1,5 +1,8 @@
 #include "MainWindow.h"
+
+#include "Windows/FolderWindow.h"
 #include "Windows/SettingsWindow.h"
+#include "Windows/InitWindow.h"
 #include <AUI/Util/UIBuildingHelpers.h>
 #include <AUI/View/ALabel.h>
 #include <AUI/View/AButton.h>
@@ -13,14 +16,6 @@
 #include <AUI/Util/ACleanup.h>
 
 using namespace declarative;
-
-MainWindow::MainWindow() : AWindow("LauncherMineT", 850_dp, 500_dp) {
-    setContents(Horizontal::Expanding {
-      NIZHNYA_HUETA(),
-    } with_style {
-      BackgroundSolid { 0x232323_rgb },
-    });
-}
 
 _<AView> MainWindow::CENTRALNYA_HUETA() {
     return Centered{
@@ -65,12 +60,14 @@ _<AView> MainWindow::NIZHNYA_HUETA() {
                 Button {
                   Icon { ":img/plus.svg" },
                   Label { "Import version..." },
-                },
+                }.clicked(this, [this]{
+                    _new<InitWindow>(mState)->show();
+                }),
 
                 Button {
                   Icon { ":img/folder.svg" },
                   Label { "game dir" },
-                },
+                }.clicked(me::OpenFolder),
 
                 Button {
                   Icon { ":img/settings.svg" },
@@ -83,14 +80,29 @@ _<AView> MainWindow::NIZHNYA_HUETA() {
             } with_style {
               MinSize { 86_dp },
               Expanding {},
-              BackgroundSolid { 0x272757_rgb },
+              BackgroundSolid { 0x999999_rgb }, //0x272757_rgb
             },
           },
         },
     };
 }
 
-void MainWindow::showLauncherSettings() { _new<SettingsWindow>()->show(); }
+MainWindow::MainWindow() : AWindow("LauncherMineT", 850_dp, 500_dp) {
+    setContents(Horizontal::Expanding {
+      NIZHNYA_HUETA(),
+    } with_style {
+      BackgroundSolid { 0x232323_rgb },
+    });
+}
+
+void MainWindow::showLauncherSettings() {
+    _new<SettingsWindow>()->show();
+}
+
+void MainWindow::OpenFolder() {
+    _new<FolderWindow>(this)->show();
+}
+
 // MainWindow& MainWindow::inst() {
 //     static auto a = aui::ptr::manage(new MainWindow);
 //     ACleanup::afterEntry([&] {
