@@ -2,12 +2,10 @@
 // Created by mikle on 2025-05-28.
 //
 
-#ifndef INITWINDOW_H
-#define INITWINDOW_H
-
 #pragma once
 
 #include "Models/State.h"
+#include "Models/Version.h"
 #include <AUI/Platform/AWindow.h>
 #include <AUI/View/ARadioButton.h>
 #include <AUI/View/AListView.h>
@@ -25,8 +23,7 @@ public:
     InitWindow(State& state);
 private:
     State& mState;
+    VersionType mVersionTypeValue = VersionType::NONE;
+    ARadioButton::Group mReleaseTypeGroup;
 };
 
-
-
-#endif //INITWINDOW_H
