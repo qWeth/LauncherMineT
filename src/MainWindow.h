@@ -13,6 +13,8 @@ public:
     void OpenFolder();
     _<AView> NIZHNYA_HUETA();
     _<AView> CENTRALNYA_HUETA();
+    static MainWindow& inst();
+
 private:
     State mState;
 };

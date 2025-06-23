@@ -15,9 +15,6 @@
 #include <AUI/Util/ABitField.h>
 #include <AUI/Thread/AAsyncHolder.h>
 
-
-
-
 class InitWindow: public AWindow {
 public:
     InitWindow(State& state);
@@ -25,5 +22,13 @@ private:
     State& mState;
     VersionType mVersionTypeValue = VersionType::NONE;
     ARadioButton::Group mReleaseTypeGroup;
+    _<AListView> mMinecraftListRepo;
+    _<ATextField> mSearchTextField;
+    _<IListModel<Version>> mVersionModel;
+
+    void ImportMinecraftRepo();
+
+    emits<> invalidateSearch;
+
 };
 

@@ -1,16 +1,10 @@
-//
-// Created by mikle on 2025-06-04.
-//
+#pragma once
 
-#ifndef PROFILES_H
-#define PROFILES_H
-
-
+#include <AUI/Common/AString.h>
 
 class Profiles {
+public:
+    AString name;
+    AString value;
 
 };
-
-
-
-#endif //PROFILES_H

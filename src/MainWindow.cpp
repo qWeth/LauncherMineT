@@ -103,6 +103,14 @@ void MainWindow::OpenFolder() {
     _new<FolderWindow>(this)->show();
 }
 
+MainWindow& MainWindow::inst() {
+    static auto a = aui::ptr::manage(new MainWindow);
+    ACleanup::afterEntry([&] {
+        a = nullptr;
+    });
+    return *a;
+}
+
 // MainWindow& MainWindow::inst() {
 //     static auto a = aui::ptr::manage(new MainWindow);
 //     ACleanup::afterEntry([&] {

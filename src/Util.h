@@ -1,14 +1,10 @@
 //
 // Created by mikle on 2025-05-29.
 //
-
-#ifndef UTIL_H
-#define UTIL_H
+#pragma once
 
 #include <AUI/IO/APath.h>
 
 namespace Util {
-APath launcherDir();
+    APath launcherDir();
 };
-
-#endif //UTIL_H
