@@ -6,7 +6,6 @@
 
 AUI_ENTRY {
 
-
     _new<MainWindow>()->show();
     return 0;
 };

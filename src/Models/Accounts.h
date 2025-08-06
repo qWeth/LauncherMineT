@@ -9,10 +9,17 @@
 #include <AUI/Validation/AValidator.h>
 #include <AUI/Thread/AFuture.h>
 
-// struct Accounts {
-//     AUuid uuid;
-//     AProperty<AString> name;
-//     AProperty<AString> token;
-//
-//     AFuture<> AccUuid();
-// };
+struct Accounts {
+    AUuid uuid;
+    AProperty<AString> name;
+    AProperty<AString> token;
+
+    AFuture<> AccUuid();
+};
+
+struct UsernameValidator {
+    bool operator()(const AString& s) {
+        using namespace aui::valid;
+        return string::latin_numeric()(s) && in_range<4, 32>()(s.length());
+    }
+};

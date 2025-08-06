@@ -8,9 +8,10 @@ public:
 
     MainWindow();
 
-
     void showLauncherSettings();
     void OpenFolder();
+    void PlayButton();
+    void AddAccountButton();
     _<AView> NIZHNYA_HUETA();
     _<AView> CENTRALNYA_HUETA();
     static MainWindow& inst();

@@ -6,7 +6,7 @@
 #include "Util.h"
 
 APath Util::launcherDir() {
-     auto path = APath::getDefaultPath(APath::APPDATA).file(".hackers-mc");
+     auto path = APath::getDefaultPath(APath::APPDATA).file(".minet");
      do_once {
          path.makeDirs();
      };

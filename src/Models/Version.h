@@ -5,6 +5,7 @@
 
 #include <AUI/Common/AString.h>
 #include <AUI/Reflect/AEnumerate.h>
+#include "Profiles.h"
 
 AUI_ENUM_FLAG(VersionType){
     NONE = 0,
@@ -28,4 +29,5 @@ struct Version {
     VersionType type;
 
     static AVector<Version> fetchAll();
+    GameProfiles import() const;
 };

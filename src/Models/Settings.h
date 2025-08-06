@@ -2,15 +2,8 @@
 // Created by mikle on 2025-05-29.
 //
 
-#ifndef SETTINGS_H
-#define SETTINGS_H
-
-
+#pragma once
 
 class Settings {
 
 };
-
-
-
-#endif //SETTINGS_H

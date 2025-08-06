@@ -2,7 +2,7 @@
 
 #include <AUI/Common/AString.h>
 
-class Profiles {
+class GameProfiles {
 public:
     AString name;
     AString value;
